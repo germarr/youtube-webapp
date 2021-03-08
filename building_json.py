@@ -57,7 +57,7 @@ for am in range(len(runn_this)):
         })
         accounting += 1
 
-helloV1= pd.DataFrame.from_dict(list_empty_II).groupby("channel_title").first().reset_index().set_index("channel_title").transpose()
+helloV1= pd.DataFrame.from_dict(list_empty_II).groupby("channel_title").first().reset_index().set_index("channel_title").transpose().fillna(0)
 
 empty_list_11 = []
 
@@ -89,3 +89,10 @@ for i in range(20):
                 "trending_videos":runn_this[i]
             }
         )
+    
+json_object = json.dumps(empty_list_11)
+
+loaded_r = json.loads(json_object)
+
+with open("sample1.json","w") as outfile:
+    json.dump(empty_list_11, outfile)
